@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of LoanClass
  *
@@ -11,6 +12,7 @@ class LoanClass {
     function __construct() {
         $this->file = isset($_POST['file']) ? $_POST['file'] : null;
     }
+
     //Check if uploaded file is .csv
     public function checkFile() {
 
@@ -19,9 +21,12 @@ class LoanClass {
         if (strtolower(end($type)) == 'csv') {
             $this->getcsv();
         } else {
+            session_start();
+            $_SESSION["message"] = "<h3 style='color:red'>Please upload a valid CSV file.</h3>";
             header("Location:index.php");
         }
     }
+
     //Get Load.csv file and loop through to get number of rows and sum the amount column
     private function getcsv() {
         $amount = 0;
@@ -34,10 +39,10 @@ class LoanClass {
             }
         }
 
-        $list = array("Counts,Amounts","$num,$amount",);
+        $list = array("Counts,Amounts", "$num,$amount",);
         $this->outputcsv($list);
     }
-    
+
     //Return array and create Output.csv
     private function outputcsv($list) {
         $file = fopen("Output.csv", "w");
@@ -46,14 +51,18 @@ class LoanClass {
             fputcsv($file, explode(',', $line));
         }
 
-        fclose($file);
+        if(fclose($file)){
+            session_start();
+            $_SESSION["message"] = "<h3 style='color:green'>Output.csv has been updated successfully.</h3>";
+            header("Location:index.php");
+        }
     }
-
 }
+
 //Get an instance of this class
 $class = new LoanClass();
 
 //Check if form is post
 if (!empty($_POST)) {
     $class->checkFile();
-   }
+}

@@ -1,3 +1,11 @@
+<?php 
+session_start();
+    if(isset($_SESSION["message"]))
+    {
+        echo"<div style='text-align:center;'>".$_SESSION["message"]."</div>";
+        unset($_SESSION["message"]);
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
