@@ -1,6 +1,6 @@
 # Calculate the aggregate loan amount from a CSV file.
 
-##Loans.csv
+## Loans.csv
 MSISDN,Network,Date,Product,Amount
 27729554427,'Network 1','12-Mar-2016','Loan Product 1',1000.00
 27722342551,'Network 2','16-Mar-2016','Loan Product 1',1122.00
