@@ -20,5 +20,5 @@ Clone the repo.
 2. Apache
 
 ## Installing
-Clone the repo into the www diirectory of Apache
+Clone the repo into the www directory of Apache server and run the project folder
 
