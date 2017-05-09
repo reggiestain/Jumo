@@ -39,7 +39,7 @@ class LoanClass {
             }
         }
 
-        $list = array("Counts,Amounts", "$num,$amount",);
+        $list = array("Count,Amount", "$num,$amount",);
         $this->outputcsv($list);
     }
 
